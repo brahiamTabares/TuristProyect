@@ -30,6 +30,8 @@ dependencies {
     implementation group: 'jakarta.faces', name: 'jakarta.faces-api', version: '4.0.1'
 // https://mvnrepository.com/artifact/org.primefaces/primefaces
     implementation group: 'org.primefaces', name: 'primefaces', version: '13.0.3', classifier:'jakarta'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
 }
 
