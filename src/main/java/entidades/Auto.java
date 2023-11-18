@@ -46,11 +46,11 @@ public class Auto {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_TIPOAUTO", referencedColumnName = "CODIGO")
-    private TipoAuto tipo;
+    private TipoAuto tipoAuto;
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_GAMAAUTO", referencedColumnName = "CODIGO")
-    private GamaAuto gama;
+    private GamaAuto gamaAuto;
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_MARCAAUTO", referencedColumnName = "CODIGO")
@@ -59,7 +59,7 @@ public class Auto {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_ESTADOAUTO", referencedColumnName = "CODIGO")
-    private EstadoAuto estado;
+    private EstadoAuto estadoAuto;
 
 
 }

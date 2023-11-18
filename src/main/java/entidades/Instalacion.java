@@ -32,8 +32,13 @@ public class Instalacion {
     private String urlimagen;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "HOTEL_COD_HOTEL", nullable = false)
     private Hotel hotelCodHotel;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "TIPO_INST_COD_TIPOI", referencedColumnName = "COD_TIPOI")
+    private TipoInst codigoTipoI;
 
 }

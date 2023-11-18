@@ -21,5 +21,9 @@ public class ServsAdAuto {
     @JoinColumn(name = "AUTO_COD_AUTO", nullable = false)
     private Auto autoCodAuto;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "SERV_AD_COD_SERVAD", referencedColumnName = "COD_SERVAD")
+    private ServAd servAd;
 
 }

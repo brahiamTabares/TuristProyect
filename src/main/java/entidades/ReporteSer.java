@@ -33,4 +33,9 @@ public class ReporteSer {
     @JoinColumn(name = "ADMINISTRADOR_COD_ADM", nullable = false)
     private Administrador administradorCodAdm;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "SERVICIO_COD_SERV", referencedColumnName = "COD_SERV")
+    private Servicio codigoServicio;
+
 }

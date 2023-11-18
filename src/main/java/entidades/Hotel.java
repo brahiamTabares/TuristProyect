@@ -42,7 +42,13 @@ public class Hotel {
     private String urlimagen;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "TIPO_HOTEL_COD_TIPOH", referencedColumnName = "COD_TIPOH")
+    private TipoHotel codigoTipoHotel;
+
 }

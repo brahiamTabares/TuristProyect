@@ -44,6 +44,11 @@ public class RvaAuto {
     private Auto autoCodigoAuto;
 
     @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "SERVICIO_COD_SERV", referencedColumnName = "COD_SERV")
+    private Servicio codigoServicio;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;

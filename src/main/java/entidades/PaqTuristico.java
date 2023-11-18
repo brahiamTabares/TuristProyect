@@ -31,8 +31,13 @@ public class PaqTuristico {
     private Double preciopersona;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "TIPO_PAQ_COD_TIPOPAQ", referencedColumnName = "COD_TIPOPAQ")
+    private TipoPaq codigoTipoPaq;
 
 }

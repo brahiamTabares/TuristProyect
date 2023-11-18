@@ -54,7 +54,7 @@ public class Cliente {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
-    private CiudadEnt ciudadEntCodigo;
+    private CiudadEnt ciudadEnt;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

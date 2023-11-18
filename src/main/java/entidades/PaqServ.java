@@ -29,8 +29,13 @@ public class PaqServ {
     private Double subtotal;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "FACTURA_C_COD_FAC", nullable = false)
     private FacturaC facturaCCodFac;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "SERVICIO_COD_SERV", referencedColumnName = "COD_SERV")
+    private Servicio codigoServicio;
 
 }

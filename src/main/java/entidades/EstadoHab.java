@@ -24,20 +24,5 @@ public class EstadoHab {
     @Column(name = "DESCRIPCION", nullable = false)
     private String descripcion;
 
-    public String getCodEh() {
-        return codEh;
-    }
-
-    public void setCodEh(String codEh) {
-        this.codEh = codEh;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
 }

@@ -1,9 +1,6 @@
 package entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -23,5 +20,10 @@ public class CiudadEnt {
     @NotNull
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "DEPARTAMENTO_COD_DEP", referencedColumnName = "COD_DEP")
+    private Departamento departamento;
 
 }

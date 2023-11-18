@@ -1,9 +1,6 @@
 package entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -33,5 +30,10 @@ public class HorarioPaq {
     @NotNull
     @Column(name = "HORAFIN", nullable = false, length = 50)
     private String horafin;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "PAQ_TURISTICO_COD_PAQ_TUR", referencedColumnName = "COD_PAQ_TUR")
+    private PaqTuristico paqTuristico;
 
 }

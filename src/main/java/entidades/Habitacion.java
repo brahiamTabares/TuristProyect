@@ -36,5 +36,15 @@ public class Habitacion {
     @JoinColumn(name = "ESTADO_HAB_COD_EH", nullable = false)
     private EstadoHab estadoHabCodEh;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "NIVELHABITACION_COD_NH", referencedColumnName = "COD_NH")
+    private NivelHabitacion nhCodigo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "TIPO_HAB_COD_TIPOHAB", referencedColumnName = "COD_TIPOHAB")
+    private TipoHab codigoHab;
+
 
 }

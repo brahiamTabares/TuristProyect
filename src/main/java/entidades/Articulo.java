@@ -37,4 +37,10 @@ public class Articulo {
     @JoinColumn(name = "ESTADO_ART_CODIGO", referencedColumnName = "CODIGO")
     private EstadoArt estadoArt;
 
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "TIPO_ART_COD_TIPOART", referencedColumnName = "COD_TIPOART")
+    private TipoArt tipoArt;
+
+
 }
