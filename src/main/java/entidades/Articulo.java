@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter
 @Setter
 @Entity
@@ -36,6 +35,6 @@ public class Articulo {
     @NotNull
     @ManyToOne()
     @JoinColumn(name = "ESTADO_ART_CODIGO", referencedColumnName = "CODIGO")
-    private EstadoArt estado;
+    private EstadoArt estadoArt;
 
 }

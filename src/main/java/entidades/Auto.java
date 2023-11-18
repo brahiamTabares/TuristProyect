@@ -1,9 +1,6 @@
 package entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -46,5 +43,23 @@ public class Auto {
     @NotNull
     @Column(name = "TIPOCOMBUSTIBLE", nullable = false, length = 20)
     private String tipocombustible;
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "CODIGO_TIPOAUTO", referencedColumnName = "CODIGO")
+    private TipoAuto tipo;
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "CODIGO_GAMAAUTO", referencedColumnName = "CODIGO")
+    private GamaAuto gama;
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "CODIGO_MARCAAUTO", referencedColumnName = "CODIGO")
+    private MarcaAuto marcaAuto;
+
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "CODIGO_ESTADOAUTO", referencedColumnName = "CODIGO")
+    private EstadoAuto estado;
+
 
 }
