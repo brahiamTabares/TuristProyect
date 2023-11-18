@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "INSTALACION")
 public class Instalacion {
@@ -31,45 +35,5 @@ public class Instalacion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "HOTEL_COD_HOTEL", nullable = false)
     private Hotel hotelCodHotel;
-
-    public String getCodInst() {
-        return codInst;
-    }
-
-    public void setCodInst(String codInst) {
-        this.codInst = codInst;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getUrlimagen() {
-        return urlimagen;
-    }
-
-    public void setUrlimagen(String urlimagen) {
-        this.urlimagen = urlimagen;
-    }
-
-    public Hotel getHotelCodHotel() {
-        return hotelCodHotel;
-    }
-
-    public void setHotelCodHotel(Hotel hotelCodHotel) {
-        this.hotelCodHotel = hotelCodHotel;
-    }
 
 }

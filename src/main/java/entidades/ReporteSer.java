@@ -3,9 +3,12 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "REPORTE_SER")
 public class ReporteSer {
@@ -29,45 +32,5 @@ public class ReporteSer {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ADMINISTRADOR_COD_ADM", nullable = false)
     private Administrador administradorCodAdm;
-
-    public String getCodigoRe() {
-        return codigoRe;
-    }
-
-    public void setCodigoRe(String codigoRe) {
-        this.codigoRe = codigoRe;
-    }
-
-    public String getDescripcionRe() {
-        return descripcionRe;
-    }
-
-    public void setDescripcionRe(String descripcionRe) {
-        this.descripcionRe = descripcionRe;
-    }
-
-    public LocalDate getFechareporte() {
-        return fechareporte;
-    }
-
-    public void setFechareporte(LocalDate fechareporte) {
-        this.fechareporte = fechareporte;
-    }
-
-    public String getEstadoSer() {
-        return estadoSer;
-    }
-
-    public void setEstadoSer(String estadoSer) {
-        this.estadoSer = estadoSer;
-    }
-
-    public Administrador getAdministradorCodAdm() {
-        return administradorCodAdm;
-    }
-
-    public void setAdministradorCodAdm(Administrador administradorCodAdm) {
-        this.administradorCodAdm = administradorCodAdm;
-    }
 
 }

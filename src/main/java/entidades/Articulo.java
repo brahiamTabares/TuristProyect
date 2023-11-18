@@ -1,9 +1,6 @@
 package entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -36,5 +33,9 @@ public class Articulo {
     @NotNull
     @Column(name = "UNIDADESSTOCK", nullable = false)
     private Long unidadesstock;
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "ESTADO_ART_CODIGO", referencedColumnName = "CODIGO")
+    private EstadoArt estado;
 
 }

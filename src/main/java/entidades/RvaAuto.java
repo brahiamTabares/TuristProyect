@@ -3,9 +3,12 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "RVA_AUTO")
 public class RvaAuto {
@@ -45,68 +48,5 @@ public class RvaAuto {
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;
 
-    public String getCodigoRvaAuto() {
-        return codigoRvaAuto;
-    }
-
-    public void setCodigoRvaAuto(String codigoRvaAuto) {
-        this.codigoRvaAuto = codigoRvaAuto;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public LocalDate getFecharecogida() {
-        return fecharecogida;
-    }
-
-    public void setFecharecogida(LocalDate fecharecogida) {
-        this.fecharecogida = fecharecogida;
-    }
-
-    public LocalDate getFechaentrega() {
-        return fechaentrega;
-    }
-
-    public void setFechaentrega(LocalDate fechaentrega) {
-        this.fechaentrega = fechaentrega;
-    }
-
-    public Double getPreciorentadia() {
-        return preciorentadia;
-    }
-
-    public void setPreciorentadia(Double preciorentadia) {
-        this.preciorentadia = preciorentadia;
-    }
-
-    public EstadoRvaAuto getEstadoreservaautoCodigo() {
-        return estadoreservaautoCodigo;
-    }
-
-    public void setEstadoreservaautoCodigo(EstadoRvaAuto estadoreservaautoCodigo) {
-        this.estadoreservaautoCodigo = estadoreservaautoCodigo;
-    }
-
-    public Auto getAutoCodigoAuto() {
-        return autoCodigoAuto;
-    }
-
-    public void setAutoCodigoAuto(Auto autoCodigoAuto) {
-        this.autoCodigoAuto = autoCodigoAuto;
-    }
-
-    public CiudadEnt getCiudadEntCodigo() {
-        return ciudadEntCodigo;
-    }
-
-    public void setCiudadEntCodigo(CiudadEnt ciudadEntCodigo) {
-        this.ciudadEntCodigo = ciudadEntCodigo;
-    }
 
 }

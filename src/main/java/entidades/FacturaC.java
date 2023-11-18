@@ -3,9 +3,12 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "FACTURA_C")
 public class FacturaC {
@@ -37,60 +40,5 @@ public class FacturaC {
     @Column(name = "ESTADO")
     private Boolean estado;
 
-    public String getCodFac() {
-        return codFac;
-    }
-
-    public void setCodFac(String codFac) {
-        this.codFac = codFac;
-    }
-
-    public LocalDate getFechaExpedicion() {
-        return fechaExpedicion;
-    }
-
-    public void setFechaExpedicion(LocalDate fechaExpedicion) {
-        this.fechaExpedicion = fechaExpedicion;
-    }
-
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public String getDetallecompra() {
-        return detallecompra;
-    }
-
-    public void setDetallecompra(String detallecompra) {
-        this.detallecompra = detallecompra;
-    }
-
-    public Cliente getClienteCedula() {
-        return clienteCedula;
-    }
-
-    public void setClienteCedula(Cliente clienteCedula) {
-        this.clienteCedula = clienteCedula;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 
 }

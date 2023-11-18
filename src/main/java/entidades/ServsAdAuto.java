@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "SERVS_AD_AUTO")
 public class ServsAdAuto {
@@ -17,20 +21,5 @@ public class ServsAdAuto {
     @JoinColumn(name = "AUTO_COD_AUTO", nullable = false)
     private Auto autoCodAuto;
 
-    public String getCodServadauto() {
-        return codServadauto;
-    }
-
-    public void setCodServadauto(String codServadauto) {
-        this.codServadauto = codServadauto;
-    }
-
-    public Auto getAutoCodAuto() {
-        return autoCodAuto;
-    }
-
-    public void setAutoCodAuto(Auto autoCodAuto) {
-        this.autoCodAuto = autoCodAuto;
-    }
 
 }
