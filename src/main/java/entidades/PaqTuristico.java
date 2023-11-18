@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "PAQ_TURISTICO")
 public class PaqTuristico {
@@ -30,45 +34,5 @@ public class PaqTuristico {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;
-
-    public String getCodPaqTur() {
-        return codPaqTur;
-    }
-
-    public void setCodPaqTur(String codPaqTur) {
-        this.codPaqTur = codPaqTur;
-    }
-
-    public String getCodigoProveedor() {
-        return codigoProveedor;
-    }
-
-    public void setCodigoProveedor(String codigoProveedor) {
-        this.codigoProveedor = codigoProveedor;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getPreciopersona() {
-        return preciopersona;
-    }
-
-    public void setPreciopersona(Double preciopersona) {
-        this.preciopersona = preciopersona;
-    }
-
-    public CiudadEnt getCiudadEntCodigo() {
-        return ciudadEntCodigo;
-    }
-
-    public void setCiudadEntCodigo(CiudadEnt ciudadEntCodigo) {
-        this.ciudadEntCodigo = ciudadEntCodigo;
-    }
 
 }

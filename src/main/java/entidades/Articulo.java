@@ -1,12 +1,13 @@
 package entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "ARTICULO")
 public class Articulo {
@@ -32,45 +33,9 @@ public class Articulo {
     @NotNull
     @Column(name = "UNIDADESSTOCK", nullable = false)
     private Long unidadesstock;
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public Long getUnidadesstock() {
-        return unidadesstock;
-    }
-
-    public void setUnidadesstock(Long unidadesstock) {
-        this.unidadesstock = unidadesstock;
-    }
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "ESTADO_ART_CODIGO", referencedColumnName = "CODIGO")
+    private EstadoArt estado;
 
 }

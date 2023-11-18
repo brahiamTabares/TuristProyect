@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "PAQ_SERV")
 public class PaqServ {
@@ -28,53 +32,5 @@ public class PaqServ {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "FACTURA_C_COD_FAC", nullable = false)
     private FacturaC facturaCCodFac;
-
-    public String getCodPserv() {
-        return codPserv;
-    }
-
-    public void setCodPserv(String codPserv) {
-        this.codPserv = codPserv;
-    }
-
-    public Long getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Long cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Double getPreciounitario() {
-        return preciounitario;
-    }
-
-    public void setPreciounitario(Double preciounitario) {
-        this.preciounitario = preciounitario;
-    }
-
-    public Double getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(Double descuento) {
-        this.descuento = descuento;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public FacturaC getFacturaCCodFac() {
-        return facturaCCodFac;
-    }
-
-    public void setFacturaCCodFac(FacturaC facturaCCodFac) {
-        this.facturaCCodFac = facturaCCodFac;
-    }
 
 }

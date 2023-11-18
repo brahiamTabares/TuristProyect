@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "RVA_PAQ_TUR")
 public class RvaPaqTur {
@@ -48,76 +52,5 @@ public class RvaPaqTur {
     @JoinColumn(name = "FACTURA_C_COD_FAC", nullable = false)
     private FacturaC facturaCCodFac;
 
-    public String getCodRpt() {
-        return codRpt;
-    }
-
-    public void setCodRpt(String codRpt) {
-        this.codRpt = codRpt;
-    }
-
-    public Double getPrcdescuento() {
-        return prcdescuento;
-    }
-
-    public void setPrcdescuento(Double prcdescuento) {
-        this.prcdescuento = prcdescuento;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public Long getNumpersonas() {
-        return numpersonas;
-    }
-
-    public void setNumpersonas(Long numpersonas) {
-        this.numpersonas = numpersonas;
-    }
-
-    public Double getPreciopersona() {
-        return preciopersona;
-    }
-
-    public void setPreciopersona(Double preciopersona) {
-        this.preciopersona = preciopersona;
-    }
-
-    public PaqTuristico getPaqTuristicoCodPaqTur() {
-        return paqTuristicoCodPaqTur;
-    }
-
-    public void setPaqTuristicoCodPaqTur(PaqTuristico paqTuristicoCodPaqTur) {
-        this.paqTuristicoCodPaqTur = paqTuristicoCodPaqTur;
-    }
-
-    public EstadoRvaPaq getEstadoRvaPaqCodigo() {
-        return estadoRvaPaqCodigo;
-    }
-
-    public void setEstadoRvaPaqCodigo(EstadoRvaPaq estadoRvaPaqCodigo) {
-        this.estadoRvaPaqCodigo = estadoRvaPaqCodigo;
-    }
-
-    public HorarioPaq getHorarioPaqCodigo() {
-        return horarioPaqCodigo;
-    }
-
-    public void setHorarioPaqCodigo(HorarioPaq horarioPaqCodigo) {
-        this.horarioPaqCodigo = horarioPaqCodigo;
-    }
-
-    public FacturaC getFacturaCCodFac() {
-        return facturaCCodFac;
-    }
-
-    public void setFacturaCCodFac(FacturaC facturaCCodFac) {
-        this.facturaCCodFac = facturaCCodFac;
-    }
 
 }

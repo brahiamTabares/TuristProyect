@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "HABITACION")
 public class Habitacion {
@@ -32,52 +36,5 @@ public class Habitacion {
     @JoinColumn(name = "ESTADO_HAB_COD_EH", nullable = false)
     private EstadoHab estadoHabCodEh;
 
-    public HabitacionId getId() {
-        return id;
-    }
-
-    public void setId(HabitacionId id) {
-        this.id = id;
-    }
-
-    public Long getNumcuartos() {
-        return numcuartos;
-    }
-
-    public void setNumcuartos(Long numcuartos) {
-        this.numcuartos = numcuartos;
-    }
-
-    public Long getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(Long capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public Double getPrecionoche() {
-        return precionoche;
-    }
-
-    public void setPrecionoche(Double precionoche) {
-        this.precionoche = precionoche;
-    }
-
-    public String getUrlimagen() {
-        return urlimagen;
-    }
-
-    public void setUrlimagen(String urlimagen) {
-        this.urlimagen = urlimagen;
-    }
-
-    public EstadoHab getEstadoHabCodEh() {
-        return estadoHabCodEh;
-    }
-
-    public void setEstadoHabCodEh(EstadoHab estadoHabCodEh) {
-        this.estadoHabCodEh = estadoHabCodEh;
-    }
 
 }

@@ -6,7 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "HORARIO_PAQ")
 public class HorarioPaq {
@@ -29,37 +33,5 @@ public class HorarioPaq {
     @NotNull
     @Column(name = "HORAFIN", nullable = false, length = 50)
     private String horafin;
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public String getHorainicio() {
-        return horainicio;
-    }
-
-    public void setHorainicio(String horainicio) {
-        this.horainicio = horainicio;
-    }
-
-    public String getHorafin() {
-        return horafin;
-    }
-
-    public void setHorafin(String horafin) {
-        this.horafin = horafin;
-    }
 
 }

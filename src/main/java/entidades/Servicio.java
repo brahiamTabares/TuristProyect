@@ -3,7 +3,11 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "SERVICIO")
 public class Servicio {
@@ -36,61 +40,5 @@ public class Servicio {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ADMINISTRADOR_COD_ADM", nullable = false)
     private Administrador administradorCodAdm;
-
-    public String getCodServ() {
-        return codServ;
-    }
-
-    public void setCodServ(String codServ) {
-        this.codServ = codServ;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getCosto() {
-        return costo;
-    }
-
-    public void setCosto(Double costo) {
-        this.costo = costo;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
-    public FacturaC getFacturaCCodFac() {
-        return facturaCCodFac;
-    }
-
-    public void setFacturaCCodFac(FacturaC facturaCCodFac) {
-        this.facturaCCodFac = facturaCCodFac;
-    }
-
-    public RvaPaqTur getRvaPaqTurCodRpt() {
-        return rvaPaqTurCodRpt;
-    }
-
-    public void setRvaPaqTurCodRpt(RvaPaqTur rvaPaqTurCodRpt) {
-        this.rvaPaqTurCodRpt = rvaPaqTurCodRpt;
-    }
-
-    public Administrador getAdministradorCodAdm() {
-        return administradorCodAdm;
-    }
-
-    public void setAdministradorCodAdm(Administrador administradorCodAdm) {
-        this.administradorCodAdm = administradorCodAdm;
-    }
 
 }

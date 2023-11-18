@@ -3,9 +3,12 @@ package entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "ADMINISTRADOR")
 public class Administrador implements Serializable {
@@ -31,44 +34,4 @@ public class Administrador implements Serializable {
     @JoinColumn(name = "ESTADO_A_CODIGO", referencedColumnName = "CODIGO")
     private EstadoA estado;
 
-
-    public String getCodAdm() {
-        return codAdm;
-    }
-
-    public void setCodAdm(String codAdm) {
-        this.codAdm = codAdm;
-    }
-
-    public String getNombreA() {
-        return nombreA;
-    }
-
-    public void setNombreA(String nombreA) {
-        this.nombreA = nombreA;
-    }
-
-    public String getPasswordA() {
-        return passwordA;
-    }
-
-    public void setPasswordA(String passwordA) {
-        this.passwordA = passwordA;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public EstadoA getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoA estado) {
-        this.estado = estado;
-    }
 }

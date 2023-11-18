@@ -6,7 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "TIPO_INST")
 public class TipoInst {
@@ -20,20 +24,5 @@ public class TipoInst {
     @Column(name = "DESCRIPCION", nullable = false, length = 250)
     private String descripcion;
 
-    public String getCodTipoi() {
-        return codTipoi;
-    }
-
-    public void setCodTipoi(String codTipoi) {
-        this.codTipoi = codTipoi;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
 }

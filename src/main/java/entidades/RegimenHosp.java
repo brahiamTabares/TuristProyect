@@ -6,7 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "REGIMEN_HOSP")
 public class RegimenHosp {
@@ -28,37 +32,5 @@ public class RegimenHosp {
     @NotNull
     @Column(name = "PRCINCREMENTO", nullable = false)
     private Double prcincremento;
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getPrcincremento() {
-        return prcincremento;
-    }
-
-    public void setPrcincremento(Double prcincremento) {
-        this.prcincremento = prcincremento;
-    }
 
 }
