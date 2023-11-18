@@ -1,6 +1,7 @@
 package bases.beans;
 
 import bases.repositorio.AbstractRepositorio;
+import entidades.TipoAuto;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.application.FacesMessage.Severity;
 import jakarta.faces.component.UIComponent;

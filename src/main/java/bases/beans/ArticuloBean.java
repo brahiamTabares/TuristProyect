@@ -3,9 +3,7 @@ package bases.beans;
 
 import bases.beans.GenericBean;
 import bases.repositorio.*;
-import entidades.Administrador;
 import entidades.Articulo;
-import entidades.EstadoA;
 import entidades.EstadoArt;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.component.UIComponent;
@@ -27,13 +25,13 @@ public class ArticuloBean extends GenericBean<Articulo> {
     public void init(){
         records = repositorio.get();
         defaultEstado = estadoArtRepositorio.find("E001").orElse(null);
-        record.setEstado(defaultEstado);
+        record.setEstadoArt(defaultEstado);
     }
 
     @Override
     protected Articulo newRecord() {
         var nuevo = new Articulo();
-        nuevo.setEstado(defaultEstado);
+        nuevo.setEstadoArt(defaultEstado);
         return nuevo;
     }
 
