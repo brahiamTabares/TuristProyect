@@ -6,7 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "DEPARTAMENTO")
 public class Departamento {
@@ -20,20 +24,5 @@ public class Departamento {
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
 
-    public String getCodDep() {
-        return codDep;
-    }
-
-    public void setCodDep(String codDep) {
-        this.codDep = codDep;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
 }

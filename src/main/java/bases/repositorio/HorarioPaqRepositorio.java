@@ -3,7 +3,7 @@ import entidades.HorarioPaq;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class HabitacionIdRepositorio extends AbstractRepositorio<HorarioPaq>{
+public class HorarioPaqRepositorio extends AbstractRepositorio<HorarioPaq>{
 
 
     @Override

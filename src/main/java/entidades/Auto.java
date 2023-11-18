@@ -6,6 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 
 @Entity
 @Table(name = "AUTO")
@@ -41,61 +46,5 @@ public class Auto {
     @NotNull
     @Column(name = "TIPOCOMBUSTIBLE", nullable = false, length = 20)
     private String tipocombustible;
-
-    public String getCodAuto() {
-        return codAuto;
-    }
-
-    public void setCodAuto(String codAuto) {
-        this.codAuto = codAuto;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public Long getNumpuestos() {
-        return numpuestos;
-    }
-
-    public void setNumpuestos(Long numpuestos) {
-        this.numpuestos = numpuestos;
-    }
-
-    public Double getPreciorentadia() {
-        return preciorentadia;
-    }
-
-    public void setPreciorentadia(Double preciorentadia) {
-        this.preciorentadia = preciorentadia;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Double getCapacidadcarga() {
-        return capacidadcarga;
-    }
-
-    public void setCapacidadcarga(Double capacidadcarga) {
-        this.capacidadcarga = capacidadcarga;
-    }
-
-    public String getTipocombustible() {
-        return tipocombustible;
-    }
-
-    public void setTipocombustible(String tipocombustible) {
-        this.tipocombustible = tipocombustible;
-    }
 
 }
