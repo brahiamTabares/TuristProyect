@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: FACTURA COMPRAS</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{facturaCompraBean.record.codFac}" validator="#{facturaCompraBean.validate}" required="true" />
+                    <p:outputLabel value="Fecha de expedicion: " />
+                    <p:inputText value="#{facturaCompraBean.record.fechaExpedicion}" />
+                    <p:outputLabel value="Fecha Vencimiento: " />
+                    <p:inputText value="#{facturaCompraBean.record.fechaVencimiento}" />
+                    <p:outputLabel value="Detalle Compra: " />
+                    <p:password value="#{facturaCompraBean.record.detallecompra}" />
+                    <p:outputLabel value="Cedula cliente: " />
+                    <p:inputText value="#{facturaCompraBean.record.clienteCedula}" />
+                    <p:outputLabel value="Total: " />
+                    <p:inputText value="#{facturaCompraBean.record.total}" />
+                    <p:outputLabel value="Estado: " />
+                    <p:password value="#{facturaCompraBean.record.estado}" />
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{facturaCompraBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{facturaCompraBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{facturaCompraBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{facturaCompraBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codFac}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codFac}" validator="#{facturaCompraBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Fecha Expedicion">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.fechaExpedicion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.fechaExpedicion}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Fecha Vecimiento">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.fechaVencimiento}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.fechaVencimiento}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Detalle compre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.detallecompra}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.detallecompra}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            <p:column headerText="Cedula cliente">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{record.clienteCedula}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{record.clienteCedula}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+                <p:column headerText="Total">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.total}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.total}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Estado">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.estado}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.estado}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{facturaCompraBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>

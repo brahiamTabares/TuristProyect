@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: CLIENTES</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Cedula: " />
+                    <p:inputText value="#{clienteBean.record.cedula}" validator="#{clienteBean.validate}" required="true" />
+                    <p:outputLabel value="Correo: " />
+                    <p:inputText value="#{clienteBean.record.correo}" />
+                    <p:outputLabel value="Nombre: " />
+                    <p:inputText value="#{clienteBean.record.nombre}" />
+                    <p:outputLabel value="Apellido: " />
+                    <p:password value="#{clienteBean.record.apellido}" />
+                    <p:outputLabel value="Fecha de nacimiento: " />
+                    <p:inputText value="#{clienteBean.record.fechaNacimiento}" />
+                    <p:outputLabel value="Direccion: " />
+                    <p:inputText value="#{clienteBean.record.direccion}" />
+                    <p:outputLabel value="telefono: " />
+                    <p:password value="#{clienteBean.record.telefono}" />
+                    <p:outputLabel value="Password: " />
+                    <p:inputText value="#{clienteBean.record.password}" />
+                    <p:outputLabel value="Ciudad: " />
+                    <p:password value="#{clienteBean.record.ciudadEntCodigo}" />
+
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{clienteBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{clienteBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{clienteBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Cedula" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.cedula}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.cedula}" validator="#{clienteBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Correo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.correo}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.correo}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Apellido">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.apellido}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.apellido}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            <p:column headerText="Fecha de nacimiento">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{record.fechaNacimiento}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{record.fechaNacimiento}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Direccion">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{record.direccion}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{record.direccion}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Telefono">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{record.telefono}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{record.telefono}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Ciudad">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{record.ciudadEntCodigo}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{record.ciudadEntCodigo}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{clienteBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>
