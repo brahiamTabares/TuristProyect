@@ -29,8 +29,18 @@ public class CompraArticulo {
     private Double subtotal;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "FACTURA_C_CODIGO_FAC", referencedColumnName = "COD_FAC")
+    private FacturaC facturaCodigo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ARTICULO_CODIGO", nullable = false)
     private Articulo articuloCodigo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ESTADOCART_CODIGO", referencedColumnName = "CODIGO")
+    private Estadocart estadocartCodigo;
 
 }

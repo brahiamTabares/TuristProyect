@@ -52,12 +52,12 @@ public class Cliente {
     private String password;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
     private CiudadEnt ciudadEntCodigo;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ESTADOCLIENTE_CODESTADOC", referencedColumnName = "CODESTADOC")
     private Estadocliente estadoCliente;
 
