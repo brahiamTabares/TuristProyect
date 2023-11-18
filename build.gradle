@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'war'
+    id "fish.payara.micro-gradle-plugin" version "2.0.1"
+}
+
+group = 'bases'
+version = '0.1'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+payaraMicro {
+    payaraVersion = '6.2023.10'
+    deployWar = true
+    useUberJar = false
+    daemon = false
+    commandLineOptions = [port: 8090]
+    javaCommandLineOptions = [ ea:true] 
+}
+
+dependencies {
+    providedCompile 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
+    providedCompile 'org.eclipse.microprofile:microprofile:6.0'
+    providedCompile 'fish.payara.api:payara-api:6.2023.9'
+    providedCompile group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.1.0'
+// https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
+    implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.5.0.0'
+// https://mvnrepository.com/artifact/jakarta.faces/jakarta.faces-api
+    implementation group: 'jakarta.faces', name: 'jakarta.faces-api', version: '4.0.1'
+// https://mvnrepository.com/artifact/org.primefaces/primefaces
+    implementation group: 'org.primefaces', name: 'primefaces', version: '13.0.3', classifier:'jakarta'
+
+}
+
+repositories {
+    mavenCentral()
+}
+
