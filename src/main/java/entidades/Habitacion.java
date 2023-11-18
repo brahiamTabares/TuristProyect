@@ -32,7 +32,7 @@ public class Habitacion {
     private String urlimagen;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ESTADO_HAB_COD_EH", nullable = false)
     private EstadoHab estadoHabCodEh;
 

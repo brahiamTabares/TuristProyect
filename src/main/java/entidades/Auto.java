@@ -44,20 +44,20 @@ public class Auto {
     @Column(name = "TIPOCOMBUSTIBLE", nullable = false, length = 20)
     private String tipocombustible;
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_TIPOAUTO", referencedColumnName = "CODIGO")
     private TipoAuto tipo;
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_GAMAAUTO", referencedColumnName = "CODIGO")
     private GamaAuto gama;
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_MARCAAUTO", referencedColumnName = "CODIGO")
     private MarcaAuto marcaAuto;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_ESTADOAUTO", referencedColumnName = "CODIGO")
     private EstadoAuto estado;
 

@@ -1,6 +1,5 @@
 package bases.repositorio;
 
-import entidades.EstadoA;
 import entidades.MarcaAuto;
 import jakarta.enterprise.context.ApplicationScoped;
 
