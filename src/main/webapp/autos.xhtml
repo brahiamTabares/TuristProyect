@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: AUTOS</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{autoBean.record.codAuto}" validator="#{autoBean.validate}" required="true" />
+                    <p:outputLabel value="Placa: " />
+                    <p:inputText value="#{autoBean.record.placa}" />
+                    <p:outputLabel value="Numero puestos: " />
+                    <p:inputText value="#{autoBean.record.numpuestos}" />
+                    <p:outputLabel value="Precio renta al dia: " />
+                    <p:password value="#{autoBean.record.preciorentadia}" />
+                    <p:outputLabel value="Color: " />
+                    <p:inputText value="#{autoBean.record.color}" />
+                    <p:outputLabel value="Capacidad carga: " />
+                    <p:inputText value="#{autoBean.record.capacidadcarga}" />
+                    <p:outputLabel value="Tipo combustible: " />
+                    <p:password value="#{autoBean.record.tipocombustible}" />
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{autoBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{autoBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{autoBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{autoBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codAuto}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codAuto}" validator="#{autoBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Placa">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.placa}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.placa}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Numero de puestos">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.numpuestos}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.numpuestos}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Precio renta dia">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.preciorentadia}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.preciorentadia}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Color" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.color}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.color}" validator="#{administradorBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Capacidad carga" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.capacidadcarga}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.capacidadcarga}" validator="#{autoBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Tipo combustible" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.tipocombustible}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.tipocombustible}" validator="#{autoBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{autoBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>
