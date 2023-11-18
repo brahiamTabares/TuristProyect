@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "PAIS")
-public class Pai {
+public class Pais {
     @Id
     @Size(max = 10)
     @Column(name = "CODIGO", nullable = false, length = 10)
