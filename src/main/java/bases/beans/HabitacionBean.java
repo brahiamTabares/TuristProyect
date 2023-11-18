@@ -1,9 +1,15 @@
+
+
+
 package bases.beans;
+
+
+import bases.beans.GenericBean;
 import bases.repositorio.*;
 import entidades.Administrador;
-import entidades.Cliente;
 import entidades.EstadoA;
-import entidades.Estadocliente;
+import entidades.EstadoHab;
+import entidades.Habitacion;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
@@ -13,33 +19,33 @@ import jakarta.inject.Named;
 
 @ViewScoped
 @Named
-public class ClienteBean extends GenericBean<Cliente> {
+public class HabitacionBean extends GenericBean<Habitacion> {
 
     @Inject
-    private ClienteRepositorio repositorio;
+    private HabitacionRepositorio repositorio;
     @Inject
-    private EstadoClienteRepositorio estadoClienteRepositorio;
-    private Estadocliente defaultEstado;
+    private EstadoHabRepositorio estadoHabRepositorio;
+    private EstadoHab defaultEstado;
     @PostConstruct
     public void init(){
         records = repositorio.get();
-        defaultEstado = estadoClienteRepositorio.find("ECL1").orElse(null);
+        defaultEstado = estadoHabRepositorio.find("EA001").orElse(null);
         record.setEstado(defaultEstado);
     }
 
     @Override
-    protected Cliente newRecord() {
-        var nuevo = new Cliente();
+    protected Habitacion newRecord() {
+        var nuevo = new Habitacion();
         nuevo.setEstado(defaultEstado);
         return nuevo;
     }
 
     @Override
-    protected AbstractRepositorio<Cliente> getRepositorio() {
+    protected AbstractRepositorio<Habitacion> getRepositorio() {
         return repositorio;
     }
 
     public void validate(FacesContext facesContext, UIComponent component, java.lang.Object object){
-        validateUnique(facesContext, component, object, record -> record.getCedula().equals(object.toString()) );
+        validateUnique(facesContext, component, object, record -> record.getId().getCodHab().equals(object.toString()) );
     }
 }
