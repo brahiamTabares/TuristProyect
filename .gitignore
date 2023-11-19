@@ -37,6 +37,7 @@ bin/
 
 ### VS Code ###
 .vscode/
+/bases/secured/DatabaseSetup.java
 
 ### Mac OS ###
 .DS_Store

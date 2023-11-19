@@ -10,9 +10,18 @@
 
 <h:head>
     <title>TURIS :: AUTOS</title>
+    <h:outputStylesheet name="css/estilos.css" />
 </h:head>
 
+
 <h:body>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#gestion-autos">Gestión de Autos</a></li>
+        </ul>
+    </div>
     <f:view>
 
         <p:growl id="msgs"/>
@@ -35,6 +44,7 @@
                     <p:outputLabel value="Tipo combustible: " />
                     <p:inputText value="#{autoBean.record.tipocombustible}" />
                     <p:outputLabel value="Tipo Auto: " />
+
                     <p:selectOneMenu value="#{autoBean.record.tipoAuto}"  converter="selectItemObjectConverter">
                         <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
                         <f:selectItems value="#{tipoAutoBean.records}" var="tipo" itemLabel="#{tipo.nombre}" itemValue="#{tipo}" />
@@ -73,7 +83,7 @@
                 <p:ajax event="rowEditCancel"
                         listener="#{autoBean.onRowCancel}" update=":msgs" />
 
-                <p:column headerText="Codigo" style="width: 200px">
+                <p:column headerText="Codigo" style="width: 100px">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{record.codAuto}" />
@@ -83,7 +93,7 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Placa">
+                <p:column headerText="Placa" style="width: 100px">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{record.placa}" />
@@ -93,7 +103,7 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Numero de puestos">
+                <p:column headerText="Numero de puestos" style="width: 100px">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{record.numpuestos}" />

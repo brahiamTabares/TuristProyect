@@ -27,10 +27,15 @@
                     <p:outputLabel value="Descripcion: " />
                     <p:inputText value="#{articuloBean.record.descripcion}" />
                     <p:outputLabel value="Precio: " />
-                    <p:password value="#{articuloBean.record.precio}" />
+                    <p:inputText value="#{articuloBean.record.precio}" />
                     <p:outputLabel value="Unidades Stock: " />
-                    <p:password value="#{articuloBean.record.unidadesstock}" />
+                    <p:inputText value="#{articuloBean.record.unidadesstock}" />
+                    <p:outputLabel value="Tipo Articulo: " />
 
+                    <p:selectOneMenu value="#{articuloBean.record.tipoArt}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{tipoArtBean.records}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
 
 
                     <f:facet name="footer">
@@ -103,6 +108,19 @@
                         </f:facet>
                         <f:facet name="input">
                             <p:inputText value="#{record.unidadesstock}" validator="#{articuloBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Tipo Articulo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.tipoArt.descripcion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{record.tipoArt}" converter="selectItemObjectConverter">
+                                <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                                <f:selectItems value="#{tipoArtBean.records}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+                            </p:selectOneMenu>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>

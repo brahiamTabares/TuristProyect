@@ -1,0 +1,41 @@
+
+        /* Estilos para la barra de navegación */
+    .navbar {
+        background-color: #a5e3fc;
+        overflow: hidden;
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar ul li {
+        float: left;
+    }
+
+    .navbar ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .navbar ul li a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Estilos para el componente flotante */
+    .floating-info {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+

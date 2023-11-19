@@ -19,8 +19,8 @@ import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
         name="java:app/turis/db",
         className = "oracle.jdbc.pool.OracleDataSource",
         url = "jdbc:oracle:thin:@localhost:1521:XE",//
-        user = "PROYECTO", //
-        password = "1234", //
+        user = "PROYECTOLAU", //
+        password = "laura", //
         initialPoolSize = 2,
         minPoolSize = 2,
         maxPoolSize = 10,
