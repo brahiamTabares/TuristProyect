@@ -6,11 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "HABITACION")
-public class Habitacion {
+public class Habitacion implements Serializable {
     @EmbeddedId
     private HabitacionId id;
 

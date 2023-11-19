@@ -6,12 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
 @Table(name = "FACTURA_C")
-public class FacturaC {
+public class FacturaC  implements Serializable {
     @Id
     @Size(max = 20)
     @Column(name = "COD_FAC", nullable = false, length = 20)
