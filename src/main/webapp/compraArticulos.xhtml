@@ -28,8 +28,17 @@
                     <p:inputText value="#{compraArticuloBean.record.numunidades}" />
                     <p:outputLabel value="Subtotal: " />
                     <p:password value="#{compraArticuloBean.record.subtotal}" />
+                    <p:outputLabel value="Factura: " />
+                    <p:selectOneMenu value="#{compraArticuloBean.record.facturaCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{facturaCompraBean.records}" var="factura" itemLabel="#{factura.codFac}" itemValue="#{factura}" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Articulo: " />
-                    <p:password value="#{compraArticuloBean.record.subtotal}" />
+                    <p:selectOneMenu value="#{compraArticuloBean.record.articuloCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{articuloBean.records}" var="articulo" itemLabel="#{articulo.nombre}" itemValue="#{articulo}" />
+                    </p:selectOneMenu>
+
 
 
                     <f:facet name="footer">
@@ -95,13 +104,23 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
+                <p:column headerText="Factura">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.facturaCodigo.codFac}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.facturaCodigo.codFac}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
                 <p:column headerText="Articulo">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{record.articuloCodigo}" />
+                            <h:outputText value="#{record.articuloCodigo.nombre}" />
                         </f:facet>
                         <f:facet name="input">
-                            <p:inputText value="#{record.articuloCodigo}" />
+                            <p:inputText value="#{record.articuloCodigo.nombre}" />
                         </f:facet>
                     </p:cellEditor>
                 </p:column>

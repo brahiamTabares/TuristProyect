@@ -27,7 +27,7 @@ public class ClienteBean extends GenericBean<Cliente> {
     @Inject
     private EstadoClienteRepositorio estadoClienteRepositorio;
     private Estadocliente defaultEstado;
-    private String fechaNacimientoString;
+
 
     @PostConstruct
     public void init(){
@@ -40,20 +40,7 @@ public class ClienteBean extends GenericBean<Cliente> {
     protected Cliente newRecord() {
         var nuevo = new Cliente();
         nuevo.setEstadoCliente(defaultEstado);
-        nuevo.setFechaNacimiento(convertirFecha(fechaNacimientoString));
         return nuevo;
-    }
-
-    public LocalDate convertirFecha(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
-
-        try {
-            return LocalDate.parse(dateString, formatter);
-        } catch (Exception e) {
-            // Manejar cualquier error de conversión aquí, por ejemplo:
-            e.printStackTrace();
-            return null; // O devuelve un valor por defecto o maneja el error de alguna otra manera
-        }
     }
 
     @Override
