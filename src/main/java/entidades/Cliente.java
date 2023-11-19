@@ -34,6 +34,7 @@ public class Cliente implements Serializable {
     @Column(name = "APELLIDO", nullable = false, length = 50)
     private String apellido;
 
+    @Past
     @NotNull
     @Column(name = "FECHA_NACIMIENTO", nullable = false)
     private LocalDate fechaNacimiento;
