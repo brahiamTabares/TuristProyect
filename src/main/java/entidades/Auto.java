@@ -47,7 +47,7 @@ public class Auto {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_TIPOAUTO", referencedColumnName = "CODIGO")
     private TipoAuto tipoAuto;
-    @NotNull
+    //@NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CODIGO_GAMAAUTO", referencedColumnName = "CODIGO")
     private GamaAuto gamaAuto;

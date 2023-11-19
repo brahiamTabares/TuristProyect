@@ -35,11 +35,20 @@
                     <p:outputLabel value="Tipo combustible: " />
                     <p:inputText value="#{autoBean.record.tipocombustible}" />
                     <p:outputLabel value="Tipo Auto: " />
-                    <p:inputText value="#{autoBean.record.tipo}" />
+                    <p:selectOneMenu value="#{autoBean.record.tipoAuto}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{tipoAutoBean.records}" var="tipo" itemLabel="#{tipo.nombre}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Gama: " />
-                    <p:inputText value="#{autoBean.record.gama}" />
+                    <p:selectOneMenu value="#{autoBean.record.gamaAuto}"   converter="selectItemObjectConverter" >
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{gamaAutoBean.records}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item}" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Marca: " />
-                    <p:inputText value="#{autoBean.record.marcaAuto}" />
+                    <p:selectOneMenu value="#{autoBean.record.marcaAuto}"   converter="selectItemObjectConverter" >
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{marcaAutoBean.records}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item}" />
+                    </p:selectOneMenu>
 
                     <f:facet name="footer">
                         <p:commandButton value="Aceptar"
@@ -134,7 +143,19 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-
+                <p:column headerText="Tipo Auto" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.tipoAuto.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{record.tipoAuto}" converter="selectItemObjectConverter">
+                                <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                                <f:selectItems value="#{tipoAutoBean.records}" var="tipo" itemLabel="#{tipo.nombre}" itemValue="#{tipo}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
                 <p:column style="width:35px">
                     <p:rowEditor />
                     <p:commandButton type="submit" action="#{autoBean.eliminar(record)}" immediate="true"
