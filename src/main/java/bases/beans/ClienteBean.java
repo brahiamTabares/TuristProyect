@@ -10,9 +10,16 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @ViewScoped
 @Named
+@Getter
+@Setter
 public class ClienteBean extends GenericBean<Cliente> {
 
     @Inject
@@ -20,6 +27,8 @@ public class ClienteBean extends GenericBean<Cliente> {
     @Inject
     private EstadoClienteRepositorio estadoClienteRepositorio;
     private Estadocliente defaultEstado;
+    private String fechaNacimientoString;
+
     @PostConstruct
     public void init(){
         records = repositorio.get();
@@ -34,6 +43,17 @@ public class ClienteBean extends GenericBean<Cliente> {
         return nuevo;
     }
 
+    public LocalDate convertirFecha(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
+
+        try {
+            return LocalDate.parse(dateString, formatter);
+        } catch (Exception e) {
+            // Manejar cualquier error de conversión aquí, por ejemplo:
+            e.printStackTrace();
+            return null; // O devuelve un valor por defecto o maneja el error de alguna otra manera
+        }
+    }
 
     @Override
     protected AbstractRepositorio<Cliente> getRepositorio() {

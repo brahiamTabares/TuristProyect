@@ -16,6 +16,7 @@
 <h:body>
     <f:view>
 
+
         <p:growl id="msgs"/>
         <h:form id="formulario">
 
@@ -30,7 +31,7 @@
                     <p:outputLabel value="Apellido: " />
                     <p:inputText value="#{clienteBean.record.apellido}" />
                     <p:outputLabel value="Fecha de nacimiento: " />
-                    <p:inputText value="#{clienteBean.record.fechaNacimiento}" />
+                    <p:inputText value="#{clienteBean.fechaNacimientoString}" />
                     <p:outputLabel value="Direccion: " />
                     <p:inputText value="#{clienteBean.record.direccion}" />
                     <p:outputLabel value="telefono: " />
