@@ -40,6 +40,7 @@ public class ClienteBean extends GenericBean<Cliente> {
     protected Cliente newRecord() {
         var nuevo = new Cliente();
         nuevo.setEstadoCliente(defaultEstado);
+        nuevo.setFechaNacimiento(convertirFecha(fechaNacimientoString));
         return nuevo;
     }
 
