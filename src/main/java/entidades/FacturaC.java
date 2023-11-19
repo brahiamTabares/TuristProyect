@@ -31,15 +31,15 @@ public class FacturaC  implements Serializable {
     private String detallecompra;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CLIENTE_CEDULA", nullable = false)
     private Cliente clienteCedula;
 
     @Column(name = "TOTAL")
     private Double total;
 
-    @Column(name = "ESTADO")
-    private Boolean estado;
+    @Column(name = "ESTADOF")
+    private String estado;
 
 
 }
