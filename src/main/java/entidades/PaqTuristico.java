@@ -6,11 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "PAQ_TURISTICO")
-public class PaqTuristico {
+public class PaqTuristico implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "COD_PAQ_TUR", nullable = false, length = 10)

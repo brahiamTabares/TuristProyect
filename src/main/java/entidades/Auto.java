@@ -6,12 +6,14 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 
 @Entity
 @Table(name = "AUTO")
-public class Auto {
+public class Auto implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "COD_AUTO", nullable = false, length = 10)

@@ -7,9 +7,11 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ESTADO_RVA_PAQ")
-public class EstadoRvaPaq {
+public class EstadoRvaPaq implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "CODIGO", nullable = false, length = 10)

@@ -6,12 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
 @Table(name = "RVA_HOSP")
-public class RvaHosp {
+public class RvaHosp implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "COD_RVA_HOSP", nullable = false, length = 10)
