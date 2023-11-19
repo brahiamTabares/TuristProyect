@@ -32,6 +32,7 @@
                     <p:inputText value="#{facturaCompraBean.record.total}" />
                     <p:outputLabel value="Estado: " />
                     <p:inputText value="#{facturaCompraBean.record.estado}" />
+                    <p:outputLabel value="Cliente: " />
                     <p:selectOneMenu value="#{facturaCompraBean.record.clienteCedula}"  converter="selectItemObjectConverter">
                         <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
                         <f:selectItems value="#{clienteBean.records}" var="cliente" itemLabel="#{cliente.nombre}" itemValue="#{cliente}" />

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: HOTELES</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{hotelBean.record.codHotel}" validator="#{hotelBean.validate}" required="true" />
+                    <p:outputLabel value="Nombre: " />
+                    <p:inputText value="#{hotelBean.record.nombre}" />
+                    <p:outputLabel value="Correo: " />
+                    <p:inputText value="#{hotelBean.record.correo}" />
+                    <p:outputLabel value="Telefono: " />
+                    <p:password value="#{hotelBean.record.telefono}" />
+                    <p:outputLabel value="Direccion: " />
+                    <p:password value="#{hotelBean.record.direccion}" />
+                    <p:outputLabel value="Url imagen: " />
+                    <p:password value="#{hotelBean.record.urlimagen}" />
+                    <p:outputLabel value="Ciudad: " />
+                    <p:selectOneMenu value="#{hotelBean.record.ciudadEntCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{ciudadBean.records}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Tipo : " />
+                    <p:selectOneMenu value="#{hotelBean.record.codigoTipoHotel}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{tipoHotelBean.records}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{hotelBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{hotelBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{hotelBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{hotelBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codHotel}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codHotel}" validator="#{hotelBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Correo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.correo}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.correo}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.telefono}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.telefono}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Direccion">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.direccion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.direccion}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="URL imagen">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.urlimagen}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.urlimagen}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Ciudad" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.ciudadEntCodigo.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{record.ciudadEntCodigo}" converter="selectItemObjectConverter">
+                                <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                                <f:selectItems value="#{ciudadBean.records}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Tipo Hotel" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codigoTipoHotel.descripcion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{record.codigoTipoHotel}" converter="selectItemObjectConverter">
+                                <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                                <f:selectItems value="#{tipoHotelBean.records}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{compraArticuloBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>
