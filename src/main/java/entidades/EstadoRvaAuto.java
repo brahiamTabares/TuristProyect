@@ -9,11 +9,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "ESTADO_RVA_AUTO")
-public class EstadoRvaAuto {
+public class EstadoRvaAuto implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "CODIGO", nullable = false, length = 10)

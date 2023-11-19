@@ -9,11 +9,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "TIPO_HOTEL")
-public class TipoHotel {
+public class TipoHotel implements Serializable {
     @Id
     @Size(max = 10)
     @Column(name = "COD_TIPOH", nullable = false, length = 10)
