@@ -13,8 +13,15 @@ import java.io.Serializable;
 @Entity
 @Table(name = "HABITACION")
 public class Habitacion implements Serializable {
-    @EmbeddedId
-    private HabitacionId id;
+    @Id
+    @Size(max = 10)
+    @Column(name = "COD_HAB", nullable = false, length = 20)
+    private String id;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "CODIGO_HOTEL", referencedColumnName = "COD_HOTEL")
+    private Hotel hotel;
 
     @NotNull
     @Column(name = "NUMCUARTOS", nullable = false)
@@ -41,12 +48,12 @@ public class Habitacion implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "NIVELHABITACION_COD_NH", referencedColumnName = "COD_NH")
-    private NivelHabitacion nhCodigo;
+    private NivelHabitacion nivelHa;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "TIPO_HAB_COD_TIPOHAB", referencedColumnName = "COD_TIPOHAB")
-    private TipoHab codigoHab;
+    private TipoHab tipoHab;
 
 
 }

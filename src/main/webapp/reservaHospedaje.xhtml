@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>TURIS :: RESERVA HOSPEDAJE</title>
+</h:head>
+
+<h:body>
+<f:view>
+
+		<p:growl id="msgs"/>
+		<h:form id="formulario">
+
+			<div class="ui-fluid">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Codigo: " />
+					<p:inputText value="#{rvaHospedajeBean.record.codRvaHosp}" validator="#{rvaHospedajeBean.validate}" required="true" />
+					<p:outputLabel value="FechaChekcin: " />
+					<p:calendar value="#{rvaHospedajeBean.record.fechachekcin}" pattern="dd/MM/yyyy" showOn="button" />
+					<p:outputLabel value="FechaChekout: " />
+					<p:calendar value="#{rvaHospedajeBean.record.fechacheckout}" pattern="dd/MM/yyyy" showOn="button" />
+					<p:outputLabel value="Precio noche: " />
+					<p:password value="#{rvaHospedajeBean.record.precionoche}" />
+					<p:outputLabel value="Precio Incremento: " />
+					<p:password value="#{rvaHospedajeBean.record.prcincremento}" />
+					<p:outputLabel value="Sub Total: " />
+					<p:password value="#{rvaHospedajeBean.record.subtotal}" />
+
+					<p:outputLabel value="Servicio: " />
+					<p:selectOneMenu value="#{rvaHospedajeBean.record.servicio}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{servicioBean.records}" var="serv" itemLabel="#{serv.descripcion}" itemValue="#{serv}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Regimen Hospedaje: " />
+					<p:selectOneMenu value="#{rvaHospedajeBean.record.regimenHosp}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{regimenHospBean.records}" var="regi" itemLabel="#{regi.descripcion}" itemValue="#{regi}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="hotel: " />
+					<p:selectOneMenu value="#{rvaHospedajeBean.record.habitacion}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{habitacionBean.records}" var="hot" itemLabel="#{hot.hotel.nombre}" itemValue="#{hot}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="habitacion: " />
+					<p:selectOneMenu value="#{rvaHospedajeBean.record.habitacion}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{habitacionBean.records}" var="hab" itemLabel="#{hab.id}" itemValue="#{hab}" />
+					</p:selectOneMenu>
+
+
+
+
+
+					<f:facet name="footer">
+						<p:commandButton value="Aceptar"
+							action="#{rvaHospedajeBean.registrar}"
+							update=":tabla :formulario :msgs" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</div>
+		</h:form>
+		<br />
+		<h:form id="tabla">
+			<p:dataTable value="#{rvaHospedajeBean.records}" var="record"
+				editable="true">
+				<p:ajax event="rowEdit" listener="#{rvaHospedajeBean.onRowEdit}"
+					update=":msgs" />
+
+				<p:ajax event="rowEditCancel"
+					listener="#{rvaHospedajeBean.onRowCancel}" update=":msgs" />
+
+				<p:column headerText="Codigo" style="width: 200px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.codRvaHosp}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.codRvaHosp}" validator="#{rvaHospedajeBean.validate}" required="true" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Fechachekcin">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.fechachekcin}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{record.fechachekcin}" pattern="dd/MM/yyyy" showOn="button" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+			<p:column headerText="Fechachekckout">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{record.fechacheckout}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:calendar value="#{record.fechacheckout}" pattern="dd/MM/yyyy" showOn="button" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+				<p:column headerText="Precio Noche">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.precionoche}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.precionoche}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="precio Incremento">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.prcincremento}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.prcincremento}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="SubTotal">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.subtotal}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.subtotal}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Servicio">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.servicio.descripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.servicio.descripcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Regimen Hospedaje">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.regimenHosp.descripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.regimenHosp.descripcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Hotel">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.habitacion.hotel.nombre}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.habitacion.hotel.nombre}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Habitacion">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.habitacion.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.habitacion.id}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:35px">
+					<p:rowEditor />
+					<p:commandButton type="submit" action="#{rvaHospedajeBean.eliminar(record)}" immediate="true"
+									 icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+						<p:confirm header="Confirmar"
+								   message="Esta seguro que desea eliminar el registro"
+								   icon="pi pi-exclamation-triangle"  />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+				<p:commandButton value="NO" type="button"
+								 styleClass="ui-confirmdialog-no ui-button-flat"  />
+				<p:commandButton value="SI" type="button"
+								 styleClass="ui-confirmdialog-yes"  />
+			</p:confirmDialog>
+
+		</h:form>
+
+</f:view>
+</h:body>
+</html>

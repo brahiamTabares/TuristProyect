@@ -1,12 +1,11 @@
 package bases.beans;
 
 import bases.repositorio.AbstractRepositorio;
-import bases.repositorio.AutoRepositorio;
-import bases.repositorio.EstadoAutoRepositorio;
-import bases.repositorio.PaqTuristicoRepositorio;
-import entidades.Auto;
-import entidades.EstadoAuto;
-import entidades.PaqTuristico;
+import bases.repositorio.FacturaCRepositorio;
+
+import bases.repositorio.RegimenHospRepositorio;
+import entidades.FacturaC;
+import entidades.RegimenHosp;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
@@ -16,30 +15,27 @@ import jakarta.inject.Named;
 
 @ViewScoped
 @Named
-public class PaqTuristicoBean extends GenericBean<PaqTuristico> {
+public class RegimenHospBean extends GenericBean<RegimenHosp> {
 
     @Inject
-    private PaqTuristicoRepositorio repositorio;
-
+    private RegimenHospRepositorio repositorio;
     @PostConstruct
     public void init(){
         records = repositorio.get();
-
     }
 
     @Override
-    protected PaqTuristico newRecord() {
-        var nuevo = new PaqTuristico();
+    protected RegimenHosp newRecord() {
+        var nuevo = new RegimenHosp();
         return nuevo;
     }
 
     @Override
-    protected AbstractRepositorio<PaqTuristico> getRepositorio() {
+    protected AbstractRepositorio<RegimenHosp> getRepositorio() {
         return repositorio;
     }
 
     public void validate(FacesContext facesContext, UIComponent component, java.lang.Object object){
-        validateUnique(facesContext, component, object, record -> record.getCodPaqTur().equals(object.toString()) );
+        validateUnique(facesContext, component, object, record -> record.getCodigo().equals(object.toString()) );
     }
-
 }

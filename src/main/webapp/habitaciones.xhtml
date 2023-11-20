@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>TURIS :: HABITACIONES</title>
+</h:head>
+
+<h:body>
+<f:view>
+
+		<p:growl id="msgs"/>
+		<h:form id="formulario">
+
+			<div class="ui-fluid">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Codigo: " />
+					<p:inputText value="#{habitacionBean.record.id}" validator="#{habitacionBean.validate}" required="true" />
+					<p:outputLabel value="Hotel: " />
+					<p:selectOneMenu value="#{habitacionBean.record.hotel}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{hotelBean.records}" var="hotel" itemLabel="#{hotel.nombre}" itemValue="#{hotel}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Numero Cuartos: " />
+					<p:inputText value="#{habitacionBean.record.numcuartos}" />
+					<p:outputLabel value="Capacidad: " />
+					<p:inputText value="#{habitacionBean.record.capacidad}" />
+					<p:outputLabel value="Precio Noche: " />
+					<p:inputText value="#{habitacionBean.record.precionoche}" />
+					<p:outputLabel value="Imagen: " />
+					<p:inputText value="#{habitacionBean.record.urlimagen}" />
+					<p:outputLabel value="Nivel Habitacion: " />
+					<p:selectOneMenu value="#{habitacionBean.record.nivelHa}" converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{nivelHabBean.records}" var="nivel" itemLabel="#{nivel.descripcion}" itemValue="#{nivel}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Tipo Habitacion: " />
+					<p:selectOneMenu value="#{habitacionBean.record.tipoHab}"  converter="selectItemObjectConverter">
+						<f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+						<f:selectItems value="#{tipoHabBean.records}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+					</p:selectOneMenu>
+
+					<f:facet name="footer">
+						<p:commandButton value="Aceptar"
+							action="#{habitacionBean.registrar}"
+							update=":tabla :formulario :msgs" />
+					</f:facet>
+
+				</p:panelGrid>
+
+			</div>
+		</h:form>
+		<br />
+
+
+		<h:form id="tabla">
+
+			<p:dataTable value="#{habitacionBean.records}" var="record"
+				editable="true">
+				<p:ajax event="rowEdit" listener="#{habitacionBean.onRowEdit}"
+					update=":msgs" />
+
+				<p:ajax event="rowEditCancel"
+					listener="#{habitacionBean.onRowCancel}" update=":msgs" />
+
+				<p:column headerText="Codigo" style="width: 200px">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.id}" validator="#{habitacionBean.validate}" required="true" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Hotel">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.hotel.nombre}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.hotel.nombre}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Numero Cuartos">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.numcuartos}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.numcuartos}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="capacidad">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.capacidad}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.capacidad}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Precio Noche">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.precionoche}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.precionoche}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Imagen">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.urlimagen}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.urlimagen}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Nivel Habitacion">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.nivelHa.descripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.nivelHa.descripcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Tipo Habitacion">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{record.tipoHab.descripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{record.tipoHab.descripcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:35px">
+					<p:rowEditor />
+					<p:commandButton type="submit" action="#{habitacionBean.eliminar(record)}" immediate="true"
+									 icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+						<p:confirm header="Confirmar"
+								   message="Esta seguro que desea eliminar el registro"
+								   icon="pi pi-exclamation-triangle"  />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+				<p:commandButton value="NO" type="button"
+								 styleClass="ui-confirmdialog-no ui-button-flat"  />
+				<p:commandButton value="SI" type="button"
+								 styleClass="ui-confirmdialog-yes"  />
+			</p:confirmDialog>
+
+		</h:form>
+
+</f:view>
+</h:body>
+</html>

@@ -35,22 +35,22 @@ public class RvaPaqTur implements Serializable {
     private Double preciopersona;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "PAQ_TURISTICO_COD_PAQ_TUR", nullable = false)
     private PaqTuristico paqTuristicoCodPaqTur;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ESTADO_RVA_PAQ_CODIGO", nullable = false)
     private EstadoRvaPaq estadoRvaPaqCodigo;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "HORARIO_PAQ_CODIGO", nullable = false)
     private HorarioPaq horarioPaqCodigo;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "FACTURA_C_COD_FAC", nullable = false)
     private FacturaC facturaCCodFac;
 

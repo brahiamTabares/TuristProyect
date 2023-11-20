@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import oracle.sql.CHAR;
 
 import java.io.Serializable;
 
@@ -25,8 +26,8 @@ public class Servicio implements Serializable {
     @Column(name = "COSTO")
     private Double costo;
 
-    @Column(name = "ESTADO")
-    private Boolean estado;
+    @Column(name = "ESTADOS")
+    private String estadoS;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

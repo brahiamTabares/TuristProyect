@@ -21,24 +21,8 @@ public class HabitacionId implements Serializable {
 
     @Size(max = 10)
     @NotNull
-    @Column(name = "CODIGO_HOTEL", nullable = false, length = 10)
+    @Column(name = "CODIGO_HOTEL", nullable = false, length = 10, insertable = false, updatable = false)
     private String codigoHotel;
-
-    public String getCodHab() {
-        return codHab;
-    }
-
-    public void setCodHab(String codHab) {
-        this.codHab = codHab;
-    }
-
-    public String getCodigoHotel() {
-        return codigoHotel;
-    }
-
-    public void setCodigoHotel(String codigoHotel) {
-        this.codigoHotel = codigoHotel;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -46,12 +46,12 @@ public class RvaHosp implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "SERVICIO_COD_SERV", referencedColumnName = "COD_SERV")
-    private Servicio codigoServicio;
+    private Servicio Servicio;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "REGIMEN_HOSP_CODIGO", nullable = false)
-    private RegimenHosp regimenHospCodigo;
+    private RegimenHosp regimenHosp;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

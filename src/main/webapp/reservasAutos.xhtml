@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: RESERVA HOSPEDAJE</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{rvaAutoBean.record.codigoRvaAuto}" validator="#{rvaAutoBean.validate}" required="true" />
+                    <p:outputLabel value="SubTotal: " />
+                    <p:password value="#{rvaAutoBean.record.subtotal}" />
+                    <p:outputLabel value="Fecha Recogida: " />
+                    <p:calendar value="#{rvaAutoBean.record.fecharecogida}" pattern="dd/MM/yyyy" showOn="button" />
+                    <p:outputLabel value="Fecha Entrega: " />
+                    <p:calendar value="#{rvaAutoBean.record.fechaentrega}" pattern="dd/MM/yyyy" showOn="button" />
+                    <p:outputLabel value="PrecioRentaDia: " />
+                    <p:password value="#{rvaAutoBean.record.preciorentadia}" />
+
+                    <p:outputLabel value="Auto: " />
+                    <p:selectOneMenu value="#{rvaAutoBean.record.autoCodigoAuto}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{autoBean.records}" var="auto" itemLabel="#{auto.placa}" itemValue="#{auto}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Servicio: " />
+                    <p:selectOneMenu value="#{rvaAutoBean.record.codigoServicio}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{servicioBean.records}" var="serv" itemLabel="#{serv.descripcion}" itemValue="#{serv}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Ciudad: " />
+                    <p:selectOneMenu value="#{rvaAutoBean.record.ciudadEntCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{ciudadBean.records}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+                    </p:selectOneMenu>
+
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{rvaAutoBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+        <h:form id="tabla">
+            <p:dataTable value="#{rvaAutoBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{rvaAutoBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{rvaAutoBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codigoRvaAuto}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codigoRvaAuto}" validator="#{rvaAutoBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="SubTotal">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.subtotal}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.subtotal}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Fecha Recogida">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.fecharecogida}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:calendar value="#{record.fecharecogida}" pattern="dd/MM/yyyy" showOn="button" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Fecha Entrega">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.fechaentrega}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:calendar value="#{record.fechaentrega}" pattern="dd/MM/yyyy" showOn="button" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Precio Renta dia">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.preciorentadia}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.preciorentadia}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Auto">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.autoCodigoAuto.placa}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.autoCodigoAuto.placa}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Servicio">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codigoServicio.descripcion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codigoServicio.descripcion}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Regimen Hospedaje">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.ciudadEntCodigo.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.ciudadEntCodigo.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{rvaAutoBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>

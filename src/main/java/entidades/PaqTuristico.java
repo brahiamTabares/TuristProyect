@@ -35,11 +35,11 @@ public class PaqTuristico implements Serializable {
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CIUDAD_ENT_CODIGO", nullable = false)
-    private CiudadEnt ciudadEntCodigo;
+    private CiudadEnt ciudadEnt;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "TIPO_PAQ_COD_TIPOPAQ", referencedColumnName = "COD_TIPOPAQ")
-    private TipoPaq codigoTipoPaq;
+    private TipoPaq TipoPaq;
 
 }

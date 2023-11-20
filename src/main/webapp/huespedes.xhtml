@@ -1,0 +1,113 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: HUESPEDES</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Email: " />
+                    <p:inputText value="#{huespedBean.record.email}" validator="#{huespedBean.validate}" required="true" />
+                    <p:outputLabel value="Nombre: " />
+                    <p:inputText value="#{huespedBean.record.nombre}" />
+                    <p:outputLabel value="Apellido: " />
+                    <p:inputText value="#{huespedBean.record.apellido}" />
+                    <p:outputLabel value="Password: " />
+                    <p:inputText value="#{huespedBean.record.telefono}" />
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{huespedBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{huespedBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{huespedBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{huespedBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.email}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.email}" validator="#{huespedBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.telefono}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.telefono}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:selectOneMenu value="#{huespedBean.record.codigoRvaHos}"  converter="selectItemObjectConverter">
+                    <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                    <f:selectItems value="#{rvaHospedajeBean.records}" var="rva" itemLabel="#{rva.codRvaHosp}" itemValue="#{rva}" />
+                </p:selectOneMenu>
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{huespedBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: RVA PAQTURISTICOS</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{rvaPaqueteTuristicoBean.record.codRpt}" validator="#{rvaPaqueteTuristicoBean.validate}" required="true" />
+                    <p:outputLabel value="Precio Descuento: " />
+                    <p:inputText value="#{rvaPaqueteTuristicoBean.record.prcdescuento}" />
+                    <p:outputLabel value="Sub total: " />
+                    <p:inputText value="#{rvaPaqueteTuristicoBean.record.subtotal}" />
+                    <p:outputLabel value="Numero personas: " />
+                    <p:inputText value="#{rvaPaqueteTuristicoBean.record.numpersonas}" />
+                    <p:outputLabel value="Precio Persona: " />
+                    <p:inputText value="#{rvaPaqueteTuristicoBean.record.preciopersona}" />
+                    <p:outputLabel value="Paquete turistico: " />
+                    <p:selectOneMenu value="#{rvaPaqueteTuristicoBean.record.paqTuristicoCodPaqTur}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{paqTuristicoBean.records}" var="paq" itemLabel="#{paq.descripcion}" itemValue="#{paq}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Horario paquete: " />
+                    <p:selectOneMenu value="#{rvaPaqueteTuristicoBean.record.horarioPaqCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{horarioPaqBean.records}" var="horario" itemLabel="#{horario.dia}" itemValue="#{horario}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Factura paquete: " />
+                    <p:selectOneMenu value="#{rvaPaqueteTuristicoBean.record.facturaCCodFac}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{facturaCompraBean.records}" var="fac" itemLabel="#{fac.detallecompra}" itemValue="#{fac}" />
+                    </p:selectOneMenu>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{rvaPaqueteTuristicoBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{rvaPaqueteTuristicoBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{rvaPaqueteTuristicoBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{rvaPaqueteTuristicoBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codRpt}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codRpt}" validator="#{rvaPaqueteTuristicoBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Precio Descuento">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.prcdescuento}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.prcdescuento}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="SubTotal">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.subtotal}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.subtotal}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Numero Personas">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.numpersonas}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.numpersonas}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Precio persona">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.preciopersona}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.preciopersona}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Paquete Turistico">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.paqTuristicoCodPaqTur.descripcion}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.paqTuristicoCodPaqTur.descripcion}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Horario Paquete">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.horarioPaqCodigo.dia}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.horarioPaqCodigo.dia}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Factura">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.facturaCCodFac.detallecompra}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.facturaCCodFac.detallecompra}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{rvaPaqueteTuristicoBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>
