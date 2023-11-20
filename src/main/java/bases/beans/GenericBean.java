@@ -28,9 +28,11 @@ public abstract class GenericBean<T> implements Serializable {
     public void onRowEdit(RowEditEvent<T> event) {
         T objeto = event.getObject();
         try {
+            System.out.println("EDITANDO -->onRowEdit");
             actualizar(objeto);
             mostrarMensajeGeneral("Operación exitosa");
         } catch (Exception e) {
+            e.printStackTrace();
             mostrarErrorGeneral(e.getMessage());
         }
     }
