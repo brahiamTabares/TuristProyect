@@ -21,26 +21,19 @@
                     <p:outputLabel value="Codigo: " />
                     <p:inputText value="#{rvaAutoBean.record.codigoRvaAuto}" validator="#{rvaAutoBean.validate}" required="true" />
                     <p:outputLabel value="SubTotal: " />
-                    <p:password value="#{rvaAutoBean.record.subtotal}" />
+                    <p:inputText value="#{rvaAutoBean.record.subtotal}" />
                     <p:outputLabel value="Fecha Recogida: " />
                     <p:calendar value="#{rvaAutoBean.record.fecharecogida}" pattern="dd/MM/yyyy" showOn="button" />
                     <p:outputLabel value="Fecha Entrega: " />
                     <p:calendar value="#{rvaAutoBean.record.fechaentrega}" pattern="dd/MM/yyyy" showOn="button" />
                     <p:outputLabel value="PrecioRentaDia: " />
-                    <p:password value="#{rvaAutoBean.record.preciorentadia}" />
+                    <p:inputText value="#{rvaAutoBean.record.preciorentadia}" />
 
                     <p:outputLabel value="Auto: " />
                     <p:selectOneMenu value="#{rvaAutoBean.record.autoCodigoAuto}"  converter="selectItemObjectConverter">
                         <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
                         <f:selectItems value="#{autoBean.records}" var="auto" itemLabel="#{auto.placa}" itemValue="#{auto}" />
                     </p:selectOneMenu>
-
-                    <p:outputLabel value="Servicio: " />
-                    <p:selectOneMenu value="#{rvaAutoBean.record.codigoServicio}"  converter="selectItemObjectConverter">
-                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
-                        <f:selectItems value="#{servicioBean.records}" var="serv" itemLabel="#{serv.descripcion}" itemValue="#{serv}" />
-                    </p:selectOneMenu>
-
                     <p:outputLabel value="Ciudad: " />
                     <p:selectOneMenu value="#{rvaAutoBean.record.ciudadEntCodigo}"  converter="selectItemObjectConverter">
                         <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
@@ -126,16 +119,6 @@
                         </f:facet>
                         <f:facet name="input">
                             <p:inputText value="#{record.autoCodigoAuto.placa}" />
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column headerText="Servicio">
-                    <p:cellEditor>
-                        <f:facet name="output">
-                            <h:outputText value="#{record.codigoServicio.descripcion}" />
-                        </f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{record.codigoServicio.descripcion}" />
                         </f:facet>
                     </p:cellEditor>
                 </p:column>

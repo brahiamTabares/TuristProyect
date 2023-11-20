@@ -44,10 +44,6 @@ public class RvaAuto implements Serializable {
     @JoinColumn(name = "AUTO_CODIGO_AUTO", nullable = false)
     private Auto autoCodigoAuto;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "SERVICIO_COD_SERV", referencedColumnName = "COD_SERV")
-    private Servicio codigoServicio;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
