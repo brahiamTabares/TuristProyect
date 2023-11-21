@@ -1,4 +1,4 @@
-/*package bases.repositorio;
+package bases.repositorio;
 
 
 import entidades.Huesped;
@@ -17,4 +17,4 @@ public class HuespedRepositorio extends AbstractRepositorio<Huesped>{
     protected String extractIdFromEntity(Huesped record) {
         return record.getEmail();
     }
-}*/
+}

@@ -27,8 +27,13 @@
                     <p:inputText value="#{huespedBean.record.nombre}" />
                     <p:outputLabel value="Apellido: " />
                     <p:inputText value="#{huespedBean.record.apellido}" />
-                    <p:outputLabel value="Password: " />
+                    <p:outputLabel value="Telefono: " />
                     <p:inputText value="#{huespedBean.record.telefono}" />
+                    <p:outputLabel value="Hotel: " />
+                    <p:selectOneMenu value="#{huespedBean.record.codigoRvaHos}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{rvaHospedajeBean.records}" var="hab" itemLabel="#{hab.habitacion.hotel.nombre}" itemValue="#{hab}" />
+                    </p:selectOneMenu>
 
 
                     <f:facet name="footer">
@@ -74,6 +79,16 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
+                <p:column headerText="Apellido">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.apellido}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.apellido}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
                 <p:column headerText="Telefono">
                     <p:cellEditor>
                         <f:facet name="output">
@@ -84,10 +99,16 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:selectOneMenu value="#{huespedBean.record.codigoRvaHos}"  converter="selectItemObjectConverter">
-                    <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
-                    <f:selectItems value="#{rvaHospedajeBean.records}" var="rva" itemLabel="#{rva.codRvaHosp}" itemValue="#{rva}" />
-                </p:selectOneMenu>
+                <p:column headerText="Reserva">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codigoRvaHos.habitacion.hotel.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codigoRvaHos.habitacion.hotel.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
                 <p:column style="width:35px">
                     <p:rowEditor />
                     <p:commandButton type="submit" action="#{huespedBean.eliminar(record)}" immediate="true"

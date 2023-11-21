@@ -1,0 +1,150 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>TURIS :: COMPRA ARTICULOS</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <p:growl id="msgs"/>
+        <h:form id="formulario">
+
+            <div class="ui-fluid">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText value="#{compraArticuloBean.record.codigocart}" validator="#{compraArticuloBean.validate}" required="true" />
+                    <p:outputLabel value="Precio unidad: " />
+                    <p:inputText value="#{compraArticuloBean.record.preciounidad}" />
+                    <p:outputLabel value="Numero de unidades: " />
+                    <p:inputText value="#{compraArticuloBean.record.numunidades}" />
+                    <p:outputLabel value="Subtotal: " />
+                    <p:password value="#{compraArticuloBean.record.subtotal}" />
+                    <p:outputLabel value="Factura: " />
+                    <p:selectOneMenu value="#{compraArticuloBean.record.facturaCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{facturaCompraBean.records}" var="factura" itemLabel="#{factura.codFac}" itemValue="#{factura}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Articulo: " />
+                    <p:selectOneMenu value="#{compraArticuloBean.record.articuloCodigo}"  converter="selectItemObjectConverter">
+                        <f:selectItem itemLabel="Seleccione un elemento" noSelectionOption="true" />
+                        <f:selectItems value="#{articuloBean.records}" var="articulo" itemLabel="#{articulo.nombre}" itemValue="#{articulo}" />
+                    </p:selectOneMenu>
+
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar"
+                                         action="#{compraArticuloBean.registrar}"
+                                         update=":tabla :formulario :msgs" />
+                    </f:facet>
+
+                </p:panelGrid>
+
+            </div>
+        </h:form>
+        <br />
+
+
+        <h:form id="tabla">
+
+            <p:dataTable value="#{compraArticuloBean.records}" var="record"
+                         editable="true">
+                <p:ajax event="rowEdit" listener="#{compraArticuloBean.onRowEdit}"
+                        update=":msgs" />
+
+                <p:ajax event="rowEditCancel"
+                        listener="#{compraArticuloBean.onRowCancel}" update=":msgs" />
+
+                <p:column headerText="Codigo" style="width: 200px">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.codigocart}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.codigocart}" validator="#{compraArticuloBean.validate}" required="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Precio Unidad">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.preciounidad}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.preciounidad}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Numero de unidades">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.numunidades}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.numunidades}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Subtotal">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.subtotal}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.subtotal}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Factura">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.facturaCodigo.codFac}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.facturaCodigo.codFac}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Articulo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{record.articuloCodigo.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{record.articuloCodigo.nombre}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:35px">
+                    <p:rowEditor />
+                    <p:commandButton type="submit" action="#{compraArticuloBean.eliminar(record)}" immediate="true"
+                                     icon="pi pi-trash" styleClass="rounded-button ui-button-flat ui-button-plain" update=":tabla :msgs"  >
+                        <p:confirm header="Confirmar"
+                                   message="Esta seguro que desea eliminar el registro"
+                                   icon="pi pi-exclamation-triangle"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="NO" type="button"
+                                 styleClass="ui-confirmdialog-no ui-button-flat"  />
+                <p:commandButton value="SI" type="button"
+                                 styleClass="ui-confirmdialog-yes"  />
+            </p:confirmDialog>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>

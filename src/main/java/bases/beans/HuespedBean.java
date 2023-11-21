@@ -1,13 +1,9 @@
-/*
+
 package bases.beans;
 
 
 import bases.repositorio.AbstractRepositorio;
-import bases.repositorio.AdministradorRepositorio;
-import bases.repositorio.EstadoARepositorio;
 import bases.repositorio.HuespedRepositorio;
-import entidades.Administrador;
-import entidades.EstadoA;
 import entidades.Huesped;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.component.UIComponent;
@@ -44,4 +40,3 @@ public class HuespedBean extends GenericBean<Huesped> {
         validateUnique(facesContext, component, object, record -> record.getEmail().equals(object.toString()) );
     }
 }
-*/
