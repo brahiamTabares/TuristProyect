@@ -6,21 +6,22 @@ import jakarta.inject.Named;
 import jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.ws.rs.Produces;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
 @DatabaseIdentityStoreDefinition(
-    callerQuery = "#{'select password from caller where name = ?'}",
-    groupsQuery = "select group_name from caller_groups where caller_name = ?",
-    hashAlgorithm = Pbkdf2PasswordHash.class,
-    priorityExpression = "#{'100'}",
-    hashAlgorithmParameters = {
-        "${applicationConfig.hashAlgorithmParameters}"
-    }
+        dataSourceLookup = "java:app/turis/db",
+        callerQuery= "#{'select password from VISTA_USUARIOS where CODIGO_USUARIO = ?'}",
+        groupsQuery = "select ROL from VISTA_ROL where CODIGO_USUARIO = ?",
+        hashAlgorithm = PasswordHash.class,
+        priorityExpression = "#{'100'}",
+        hashAlgorithmParameters = {
+                "${applicationConfig.hashAlgorithmParameters}"
+        }
 )
-
 
 @FormAuthenticationMechanismDefinition(
     loginToContinue = @LoginToContinue(
@@ -40,6 +41,7 @@ public class ApplicationConfig {
                 .toArray(String[]::new);
     }
 
+    @Produces
     public Map<String, String> getHashAlgorithmParameterMap() {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("Pbkdf2PasswordHash.Iterations", "3072");
