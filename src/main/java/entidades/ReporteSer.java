@@ -25,10 +25,6 @@ public class ReporteSer implements Serializable {
     @Column(name = "FECHAREPORTE")
     private LocalDate fechareporte;
 
-    @Size(max = 20)
-    @Column(name = "ESTADO_SER", length = 20)
-    private String estadoSer;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ADMINISTRADOR_COD_ADM", nullable = false)
